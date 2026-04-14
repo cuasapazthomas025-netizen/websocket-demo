@@ -1,0 +1,8 @@
+{
+  "name": "websocket-demo",
+  "version": "1.0.0",
+  "description": "Arrancador para el Demo de WebSocket",
+  "scripts": {
+    "start": "start client/index.html && cd server && node server.js"
+  }
+}
