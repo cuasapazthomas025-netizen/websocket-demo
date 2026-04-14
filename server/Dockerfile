@@ -9,8 +9,9 @@ WORKDIR /app
 COPY package*.json ./ 
 RUN npm ci --only=production 
   
-# Copiar código fuente 
+# Copiar código fuente incluyendo index.html
 COPY server.js . 
+COPY index.html . 
   
 # Cambiar propietario para usuario no-root 
 RUN chown -R node:node /app 
