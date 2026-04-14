@@ -12,11 +12,11 @@ const httpServer = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' }); 
     res.end(JSON.stringify({ status: 'ok', connections: wss.clients.size })); 
   } else { 
-    const clientPath = path.join(__dirname, '../client/index.html');
+    const clientPath = path.join(__dirname, 'index.html');
     fs.readFile(clientPath, (err, data) => {
       if (err) {
-        res.writeHead(200, { 'Content-Type': 'text/plain' }); 
-        return res.end('WebSocket Server activo. Conéctese via ws://');
+        res.writeHead(500, { 'Content-Type': 'text/plain' }); 
+        return res.end('Error: No se encontro index.html en el servidor.');
       }
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(data);
