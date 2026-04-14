@@ -15,8 +15,10 @@ const httpServer = http.createServer((req, res) => {
     const clientPath = path.join(__dirname, 'index.html');
     fs.readFile(clientPath, (err, data) => {
       if (err) {
+        let debugInfo = "Error desconocido";
+        try { debugInfo = fs.readdirSync(__dirname).join(', '); } catch(e) {}
         res.writeHead(500, { 'Content-Type': 'text/plain' }); 
-        return res.end('Error: No se encontro index.html en el servidor.');
+        return res.end(`Error al leer archivo.\nBuscando en: ${clientPath}\nArchivos en carpeta: ${debugInfo}\nCausa: ${err.message}`);
       }
       res.writeHead(200, { 'Content-Type': 'text/html' });
       res.end(data);
