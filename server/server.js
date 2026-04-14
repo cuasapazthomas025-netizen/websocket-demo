@@ -1,6 +1,8 @@
 // server.js - Servidor WebSocket en Node.js 
 const { WebSocketServer } = require('ws'); 
 const http = require('http'); 
+const fs = require('fs');
+const path = require('path');
   
 const PORT = process.env.PORT || 8080; 
   
@@ -10,8 +12,15 @@ const httpServer = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' }); 
     res.end(JSON.stringify({ status: 'ok', connections: wss.clients.size })); 
   } else { 
-    res.writeHead(200, { 'Content-Type': 'text/plain' }); 
-    res.end('WebSocket Server activo. Conéctese via ws://'); 
+    const clientPath = path.join(__dirname, '../client/index.html');
+    fs.readFile(clientPath, (err, data) => {
+      if (err) {
+        res.writeHead(200, { 'Content-Type': 'text/plain' }); 
+        return res.end('WebSocket Server activo. Conéctese via ws://');
+      }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
   } 
 }); 
   

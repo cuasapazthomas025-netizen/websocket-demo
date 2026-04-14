@@ -52,12 +52,11 @@
   <div class='container'> 
     <div class='sidebar'> 
       <h3>Conexión</h3> 
-      <!-- Default set to ws://localhost:8080 for local testing -->
+      <!-- Tu URL de render oficial -->
       <input id='url-input' type='text' 
-             value='ws://localhost:8080' 
-             placeholder='wss://websocket-client-cuasapaz995-dev.apps.rm3.7wse.p1.openshiftapps.com/' /> 
-      <div style='font-size: 11px; color: #888; margin-bottom: 8px;'>Para conectarse remoto, cambie la URL por:<br>
-      <a href="#" onclick="document.getElementById('url-input').value='wss://websocket-client-cuasapaz995-dev.apps.rm3.7wse.p1.openshiftapps.com/'; return false;" style="color:#A8DADC;">wss://websocket-client-cuasapaz995-dev.apps.rm3.7wse.p1.openshiftapps.com/</a>
+             value='wss://mi-chat-websocket.onrender.com' 
+             placeholder='wss://mi-chat-websocket.onrender.com' /> 
+      <div style='font-size: 11px; color: #888; margin-bottom: 8px;'>Conexión automática a tu servidor.
       </div>
       <button id='btn-connect' onclick='conectar()'>Conectar</button> 
       <button id='btn-disconnect' onclick='desconectar()'>Desconectar</button> 
