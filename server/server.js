@@ -56,10 +56,11 @@ wss.on('connection', (ws, req) => {
       console.log(`[MSG] Cliente ${clientId}: ${JSON.stringify(msg)}`); 
   
       // Reenviar a todos los clientes (broadcast) 
+      const textoLimpio = msg.texto || data.toString();
       const respuesta = JSON.stringify({ 
         tipo: 'mensaje', 
         clienteId: clientId, 
-        contenido: msg.texto || data.toString(), 
+        contenido: `<span style="font-size:11px; font-weight:bold; color:#E63946; margin-bottom:4px; display:block;">🗣️ ID ${clientId}</span>${textoLimpio}`, 
         timestamp: new Date().toISOString() 
       }); 
       broadcast(wss, null, respuesta); 
